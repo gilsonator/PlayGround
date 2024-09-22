@@ -35,6 +35,7 @@ function load() {
 
   function handleDragOver(event) {
     event.preventDefault();
+    // event.target.classList.add ('drag-over')
   }
 
   function handleDrop(event) {

@@ -26,3 +26,6 @@ body {
 .ctrl-cursor {
     cursor: copy; /* This will show a plus sign cursor */
 }
+.drag-over {
+  background-color: greenyellow;
+}
