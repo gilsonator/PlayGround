@@ -1,0 +1,28 @@
+body {
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  gap: 10px;
+}
+.column {
+  flex: 1;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  min-height: 200px;
+}
+.draggable {
+  padding: 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  cursor: default;
+  margin-bottom: 10px;
+}
+.dragging {
+  opacity: 0.5;
+}
+.ctrl-cursor {
+    cursor: copy; /* This will show a plus sign cursor */
+}
