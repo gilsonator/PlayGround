@@ -125,7 +125,7 @@ async function initMap() {
       lng: marker.getPosition().lng() + distance * 0.009,
     };
   
-    new CustomOverlay(position, `${distance} km<br>${count} events reported`, map);
+    new CustomOverlay(position, `${distance} - ${distance + interval} km<br>${count} events reported`, map);
   });  
 }
 

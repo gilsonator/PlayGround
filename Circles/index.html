@@ -12,10 +12,17 @@
       b {
         font-weight: 500;
       }
+      select,
+      button {
+        padding: 4px;
+      }
+      #toolbar {
+        margin-bottom: 4px;
+      }
     </style>
   </head>
   <body>
-    <div>
+    <div id="toolbar">
       <label for="groupBy">Group by distance:</label>
       <select id="groupBy">
         <option value="1">Within 1km</option>
@@ -24,6 +31,7 @@
         <option value="6">6km</option>
         <option value="10">10km +</option>
       </select>
+      <button>Apply</button>
     </div>
     <div title="Demo Map" id="map" style="height: 800px; width: 100%"></div>
     <!-- prettier-ignore -->
