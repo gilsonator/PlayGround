@@ -1,4 +1,5 @@
 // main.js
+// David Gilson
 
 const circles = [];
 const circleOverlays = [];
