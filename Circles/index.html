@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,7 +7,7 @@
     <script src="main.js" defer></script>
     <style>
       body {
-        font-family: "Roboto", Arial, sans-serif;
+        font-family: 'Roboto', Arial, sans-serif;
       }
       b {
         font-weight: 500;
@@ -18,6 +18,34 @@
       }
       #toolbar {
         margin-bottom: 4px;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 300px;
+        text-align: center;
+      }
+      .close-btn {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
       }
     </style>
   </head>
@@ -32,10 +60,63 @@
         <option value="10">10km +</option>
       </select>
       <button id="refreshMap">Apply</button>
+      <button id="fullscreen-btn">Toggle Fullscreen</button>
+      <button id="alert-btn">Show Alert</button>
     </div>
     <div title="Demo Map" id="map" style="height: 800px; width: 100%"></div>
     <!-- prettier-ignore -->
     <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
         ({key: "AIzaSyB02R4laQio9VntvjvSDk92KsT5PNH15b0", v: "weekly"});</script>
+
+    <script>
+      class CustomAlert {
+        constructor() {
+          this.modal = document.createElement('div');
+          this.modal.classList.add('modal');
+          this.modal.innerHTML = `
+                    <div class="modal-content">
+                        <p id="alert-message"></p>
+                        <button class="close-btn" id="close-btn">OK</button>
+                    </div>
+                `;
+          document.body.appendChild(this.modal);
+
+          this.closeButton = this.modal.querySelector('#close-btn');
+          this.closeButton.addEventListener('click', () => this.hide());
+          window.addEventListener('click', event => {
+            if (event.target === this.modal) {
+              this.hide();
+            }
+          });
+        }
+
+        show(message) {
+          this.modal.querySelector('#alert-message').textContent = message;
+          this.modal.style.display = 'block';
+        }
+
+        hide() {
+          this.modal.style.display = 'none';
+        }
+      }
+
+      const alertButton = document.getElementById('alert-btn');
+      const customAlert = new CustomAlert();
+
+      alertButton.addEventListener('click', () => {
+        customAlert.show('This is a custom alert!');
+      });
+
+      const fullscreenButton = document.getElementById('fullscreen-btn');
+      fullscreenButton.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(err => {
+            console.log(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
+          });
+        } else {
+          document.exitFullscreen();
+        }
+      });
+    </script>
   </body>
 </html>
