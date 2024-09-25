@@ -32,66 +32,68 @@
  * - custom-alert-close-btn: Styles for the close button.
  */
 class CustomAlert {
-  constructor() {
-      this.modal = document.createElement('div');
-      this.modal.classList.add('custom-alert-modal');
-      this.modal.innerHTML = `
-          <div class="custom-alert-modal-content">
-              <p id="custom-alert-alert-message"></p>
-              <button class="custom-alert-close-btn" id="custom-alert-close-btn">OK</button>
-          </div>
-      `;
-      document.body.appendChild(this.modal);
-
-      const style = document.createElement('style');
-      style.textContent = `
-      .custom-alert-modal {
-          display: none;
-          position: fixed;
-          z-index: 1000;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          overflow: auto;
-          background-color: rgba(0, 0, 0, 0.5);
-      }
-      .custom-alert-modal-content {
-          background-color: #fefefe;
-          margin: 15% auto;
-          padding: 20px;
-          border: 1px solid #888;
-          width: 80%;
-          max-width: 300px;
-          text-align: center;
-      }
-      .custom-alert-close-btn {
-          background-color: #4CAF50;
-          color: white;
-          padding: 10px 20px;
-          border: none;
-          cursor: pointer;
-      }
-      `;
-      document.head.appendChild(style);
-
-      this.closeButton = this.modal.querySelector('#custom-alert-close-btn');
-      this.closeButton.addEventListener('click', () => this.hide());
-      window.addEventListener('click', (event) => {
-          if (event.target === this.modal) {
-              this.hide();
-          }
-      });
+    constructor() {
+        this.modal = document.createElement('div');
+        this.modal.classList.add('custom-alert-modal');
+        this.modal.innerHTML = `
+            <div class="custom-alert-modal-content">
+                <p id="custom-alert-alert-message"></p>
+                <button class="custom-alert-close-btn" id="custom-alert-close-btn">OK</button>
+            </div>
+        `;
+        document.body.appendChild(this.modal);
+  
+        const style = document.createElement('style');
+        style.textContent = `
+        .custom-alert-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .custom-alert-modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 460px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .custom-alert-close-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        `;
+        document.head.appendChild(style);
+  
+        this.closeButton = this.modal.querySelector('#custom-alert-close-btn');
+        this.closeButton.addEventListener('click', () => this.hide());
+        window.addEventListener('click', (event) => {
+            if (event.target === this.modal) {
+                this.hide();
+            }
+        });
+    }
+  
+    show(message) {
+        this.modal.querySelector('#custom-alert-alert-message').textContent = message;
+        this.modal.style.display = 'block';
+    }
+  
+    hide() {
+        this.modal.style.display = 'none';
+    }
   }
-
-  show(message) {
-      this.modal.querySelector('#custom-alert-alert-message').textContent = message;
-      this.modal.style.display = 'block';
-  }
-
-  hide() {
-      this.modal.style.display = 'none';
-  }
-}
-
-export default CustomAlert;
+  
+  export default CustomAlert;
+  
