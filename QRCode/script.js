@@ -17,12 +17,14 @@ window.onload = function() {
                     const logoSize = canvas.width / 5;
                     const logoX = (canvas.width - logoSize) / 2;
                     const logoY = (canvas.height - logoSize) / 2;
+                    const padding = 10;
+                    
+                    // Draw white rectangle with padding behind the logo
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(logoX - padding, logoY - padding, logoSize + padding * 2, logoSize + padding * 2);
                     ctx.drawImage(logo, logoX, logoY, logoSize, logoSize);
-                };
-                logo.src = e.target.result;
 
-                const URL = document.getElementById("URL").value;
-                if (isValidURL(URL)) {
+                    const URL = document.getElementById("URL").value;
                     const qr = new QRious({
                         element: document.getElementById('qr-canvas'),
                         value: URL,
@@ -30,10 +32,9 @@ window.onload = function() {
                         padding: 20,
                     });
 
-                    document.getElementById('download-btn').disabled = false;
-                } else {
-                    alert("Please enter a valid URL.");
-                }
+                };
+                logo.src = e.target.result;
+
             };
             reader.readAsDataURL(file);
         }
