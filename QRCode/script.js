@@ -1,12 +1,11 @@
 window.onload = function() {
-    const canvas = document.getElementById('qr-canvas');
-    const ctx = canvas.getContext('2d');
     const logo = document.getElementById('logo-upload');
+    const canvas = document.getElementById('qr-canvas');
     
     document.getElementById('URL').addEventListener('input', function(event) {
         logo.disabled = !isValidURL(event.target.value);
     });
-
+    
     logo.addEventListener('change', function(event) {
         const file = event.target.files[0];
         if (file) {
@@ -14,24 +13,28 @@ window.onload = function() {
             reader.onload = function(e) {
                 const logo = new Image();
                 logo.onload = function() {
-                    const logoSize = canvas.width / 5;
-                    const logoX = (canvas.width - logoSize) / 2;
-                    const logoY = (canvas.height - logoSize) / 2;
-                    const padding = 10;
-                    
-                    // Draw white rectangle with padding behind the logo
-                    ctx.fillStyle = 'white';
-                    ctx.fillRect(logoX - padding, logoY - padding, logoSize + padding * 2, logoSize + padding * 2);
-                    ctx.drawImage(logo, logoX, logoY, logoSize, logoSize);
-
                     const URL = document.getElementById("URL").value;
                     const qr = new QRious({
                         element: document.getElementById('qr-canvas'),
                         value: URL,
                         size: 800,
-                        padding: 20,
+                        padding: 30,
                     });
 
+                    const ctx = canvas.getContext('2d');
+
+                    const logoSize = canvas.width / 5;
+                    const logoX = (canvas.width - logoSize) / 2;
+                    const logoY = (canvas.height - logoSize) / 2;
+                    const padding = document.getElementById("icon-padding").value;
+                    
+                    // Draw white rectangle with padding behind the logo
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(logoX - padding, logoY - padding, logoSize + padding * 2, logoSize + padding * 2);
+                    ctx.drawImage(logo, logoX, logoY, logoSize, logoSize);
+                    
+                    document.getElementById('download-btn').disabled = false;
+                    
                 };
                 logo.src = e.target.result;
 

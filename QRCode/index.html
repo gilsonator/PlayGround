@@ -46,8 +46,7 @@
     <p>
       Specify URL and upload brand logo.<br />
       <small
-        >NOTE: The logo image should be square, it will be drawn with a white background and padding of 10px.</small
-      >
+        >NOTE: The logo image should be square, it will be drawn with a white background and with padding, adjust padding if code will not scan.</small>
     </p>
     <div>
       URL:
@@ -56,6 +55,14 @@
         type="text"
         id="URL"
         placeholder="Enter valid URL then can upload logo"
+      /><br />
+      Padding:
+      <input
+        title="Icon padding"
+        type="number"
+        id="icon-padding"
+        placeholder="Icon Padding"
+        value="4"
       /><br />
       Logo: <input title="Brand Logo" type="file" id="logo-upload" accept="image/*" disabled />
       <div>
