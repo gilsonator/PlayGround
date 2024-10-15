@@ -3,6 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="png" href="icons/favicon.png" />
+    <link rel="icon" type="png" href="icons/android-chrome-192x192.png" />
+    <link rel="icon" type="png" href="icons/android-chrome-512x512.png" />
+    <link rel="apple-touch-icon" type="png" href="icons/apple-touch-icon.png" />
+    <link rel="icon" type="png" href="icons/favicon-16x16.png" />
+    <link rel="icon" type="png" href="icons/favicon-32x32.png" />
+    
     <title>QR Code with Logo</title>
     <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
     <style>
@@ -25,15 +33,30 @@
       #URL {
         width: 400px;
       }
+
+      .footer {
+        display: flex;
+        color: #9d9d9d;
+        width: 100%;
+      }
     </style>
   </head>
   <body>
     <h1>QR Code Generator with Company Logo</h1>
-    <p>Specify URL and upload brand logo.<br>
-        <small>NOTE: The logo image should be square with a white background and padding of 40px.</small>
+    <p>
+      Specify URL and upload brand logo.<br />
+      <small
+        >NOTE: The logo image should be square with a white background and padding of 40px.</small
+      >
     </p>
     <div>
-      URL: <input title="URL" type="text" id="URL"  placeholder="Enter valid URL then can upload logo" /><br />
+      URL:
+      <input
+        title="URL"
+        type="text"
+        id="URL"
+        placeholder="Enter valid URL then can upload logo"
+      /><br />
       Logo: <input title="Brand Logo" type="file" id="logo-upload" accept="image/*" disabled />
       <div>
         <canvas id="qr-canvas" title="QR Code"></canvas>
@@ -42,8 +65,9 @@
         <button title="Download" id="download-btn" disabled>Download QR Code</button>
       </div>
     </div>
-    <br>
+    <br />
     <small>Using: https://github.com/neocotic/qrious</small>
+    <div class="footer">&copy; 2024 David Gilson. All rights reserved.</div>
     <script src="script.js"></script>
   </body>
 </html>
