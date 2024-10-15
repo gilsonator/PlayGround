@@ -1,8 +1,13 @@
 window.onload = function() {
     const canvas = document.getElementById('qr-canvas');
     const ctx = canvas.getContext('2d');
+    const logo = document.getElementById('logo-upload');
+    
+    document.getElementById('URL').addEventListener('input', function(event) {
+        logo.disabled = !isValidURL(event.target.value);
+    });
 
-    document.getElementById('logo-upload').addEventListener('change', function(event) {
+    logo.addEventListener('change', function(event) {
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
@@ -22,7 +27,7 @@ window.onload = function() {
                         element: document.getElementById('qr-canvas'),
                         value: URL,
                         size: 800,
-                        padding: 10,
+                        padding: 20,
                     });
 
                     document.getElementById('download-btn').disabled = false;

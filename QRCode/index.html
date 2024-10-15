@@ -6,6 +6,18 @@
     <title>QR Code with Logo</title>
     <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
     <style>
+      body {
+        font-family: 'Roboto', Arial, sans-serif;
+      }
+
+      b {
+        font-weight: 500;
+      }
+
+      input,
+      button {
+        padding: 4px;
+      }
       #qr-canvas {
         width: 400px;
       }
@@ -16,11 +28,13 @@
     </style>
   </head>
   <body>
-    <p>QR Code Generator<br /></p>
+    <h1>QR Code Generator with Company Logo</h1>
+    <p>Specify URL and upload brand logo.<br>
+        <small>NOTE: The logo image should be square with a white background and padding of 40px.</small>
+    </p>
     <div>
-      URL: <input title="URL" type="text" id="URL" value="https://www.srcphotos.com.au" /><br />
-      Logo: <input title="Logo" type="file" id="logo-upload" accept="image/*" /><br />
-      <small>Logo should have padding.</small>
+      URL: <input title="URL" type="text" id="URL"  placeholder="Enter valid URL then can upload logo" /><br />
+      Logo: <input title="Brand Logo" type="file" id="logo-upload" accept="image/*" disabled />
       <div>
         <canvas id="qr-canvas" title="QR Code"></canvas>
       </div>
