@@ -21,7 +21,8 @@ window.onload = function() {
                     const qr = new QRious({
                         element: document.getElementById('qr-canvas'),
                         value: URL,
-                        size: 400
+                        size: 800,
+                        padding: 10,
                     });
 
                     document.getElementById('download-btn').disabled = false;

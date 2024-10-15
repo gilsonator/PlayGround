@@ -1,16 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QR Code with Logo</title>
     <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
-</head>
-<body>
-    URL: <input type="text" id="URL"><br>
-    <input type="file" id="logo-upload" accept="image/*"><br>
-    <button id="download-btn" disabled>Download QR Code</button>
-    <canvas id="qr-canvas" title="QR Code"></canvas>
+    <style>
+      #qr-canvas {
+        width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>QR Code Generator<br /></p>
+    <div>
+      URL: <input title="URL" type="text" id="URL" value="https://www.srcphotos.com.au" /><br />
+      Logo: <input title="Logo" type="file" id="logo-upload" accept="image/*" /><br />
+      <div>
+        <canvas id="qr-canvas" title="QR Code"></canvas>
+      </div>
+      <div>
+        <button title="Download" id="download-btn" disabled>Download QR Code</button>
+      </div>
+    </div>
+    <br>
+    <small>Using: https://github.com/neocotic/qrious</small>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
