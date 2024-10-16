@@ -3,13 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <link rel="icon" type="png" href="icons/favicon.png" />
-    <link rel="icon" type="png" href="icons/android-chrome-192x192.png" />
-    <link rel="icon" type="png" href="icons/android-chrome-512x512.png" />
-    <link rel="apple-touch-icon" type="png" href="icons/apple-touch-icon.png" />
-    <link rel="icon" type="png" href="icons/favicon-16x16.png" />
-    <link rel="icon" type="png" href="icons/favicon-32x32.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" /> 
+    <link rel="icon" type="png" href="/icons/android-chrome-192x192.png" />
+    <link rel="icon" type="png" href="/icons/android-chrome-512x512.png" />
+    <link rel="apple-touch-icon" type="png" href="/icons/apple-touch-icon.png" />
+    <link rel="icon" type="png" href="/icons/favicon-16x16.png" />
+    <link rel="icon" type="png" href="/icons/favicon-32x32.png" />
 
     <title>QR Code with Logo</title>
     <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
@@ -43,10 +42,14 @@
   </head>
   <body>
     <h1>QR Code Generator with Company Logo</h1>
+    <div class="links">
+      <img src="icons/github.svg" alt="" />
+      <a target="_blank" rel="noopener" href="https://github.com/gilsonator/PlayGround/tree/main/QRCode">github/gilsonator/PlayGround/QRCode</a>
+    </div>
     <p>
       Specify URL and upload brand logo.<br />
       <small
-        >NOTE: The logo image should be square, it will be drawn with a white background and with padding, adjust padding if code will not scan.</small>
+        >NOTE: The logo image should be square, upload an image file of the following extensions: .jpg, .jpeg, .png, .gif, .bmp, .webp or .svg, it will be drawn with a white background and with padding, adjust padding if code will not scan.</small>
     </p>
     <div>
       URL:
@@ -55,6 +58,8 @@
         type="text"
         id="URL"
         placeholder="Enter valid URL then can upload logo"
+        tabindex="0"
+        autofocus
       /><br />
       Padding:
       <input
@@ -63,14 +68,15 @@
         id="icon-padding"
         placeholder="Icon Padding"
         value="4"
-        min="0" max="10"
+        min="0" max="20"
+        tabindex="0"
       /><br />
-      Logo: <input title="Brand Logo" type="file" id="logo-upload" accept="image/*" disabled />
+      Logo: <input title="Brand Logo" type="file" id="logo-upload" accept="image/*" disabled tabindex="0" />
       <div>
         <canvas id="qr-canvas" title="QR Code"></canvas>
       </div>
       <div>
-        <button title="Download" id="download-btn" disabled>Download QR Code</button>
+        <button title="Download" id="download-btn" disabled tabindex="0">Download QR Code</button>
       </div>
     </div>
     <br />
