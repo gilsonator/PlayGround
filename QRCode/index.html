@@ -38,6 +38,13 @@
         color: #9d9d9d;
         width: 100%;
       }
+
+      .canvas-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /*height: 100vh;*/
+        }
     </style>
   </head>
   <body>
@@ -72,7 +79,7 @@
         tabindex="0"
       /><br />
       Logo: <input title="Brand Logo" type="file" id="logo-upload" accept="image/*" disabled tabindex="0" />
-      <div>
+      <div class="canvas-container">
         <canvas id="qr-canvas" title="QR Code"></canvas>
       </div>
       <div>
