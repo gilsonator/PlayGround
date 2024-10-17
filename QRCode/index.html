@@ -79,7 +79,7 @@
 <body>
     <h1>QR Code Generator with image</h1>
     <p>
-        Specify URL and upload image.<br />
+      Specify the URL and select an image to generate a QR code that will open the defined URL.<br />
         <small>
             <b>NOTE:</b> The image should be square and can be a .svg (recommended), .jpg, .jpeg, .png, .gif, .bmp and .webp. It will be drawn with a white background and padding. Adjust the padding if the QR code does not scan.
         </small>
@@ -87,7 +87,7 @@
     <div>
         <div id="URLRow">
             <label for="URL">URL:</label>
-            <input title="Enter URL to create QRCode" type="text" id="URL" placeholder="Enter a valid URL to upload logo" tabindex="0" autofocus />
+            <input title="Enter URL to create QRCode" type="text" id="URL" placeholder="Enter a valid URL" tabindex="0" autofocus />
             <img id="favicon" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUGFdjYAACAAAFAAGq1chRAAAAAElFTkSuQmCC">
         </div>
         <div>
@@ -96,7 +96,7 @@
         </div>
         <div id="buttons">
             <input type="file" id="logo-upload" class="hidden-file-input" accept="image/*" disabled tabindex="0" />
-            <label class="file-input-label" for="logo-upload">Choose Image</label>
+            <label class="file-input-label" for="logo-upload" tabindex="0">Choose Image</label>
             <button title="Directly download QRCode.png image file." id="download-btn" disabled tabindex="0">Download QR Code</button>
         </div>
     </div>  
