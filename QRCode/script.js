@@ -2,14 +2,18 @@ window.onload = function () {
     const logo = document.getElementById('logo-upload');
     const canvas = document.getElementById('qr-canvas');
     let iconFile;
+    let url;
 
     document.getElementById('URL').addEventListener('change', function (event) {
-        let url = event.target.value;
+        url = event.target.value;
 
         // regex to check if the URL starts with "http://" or "https://". If not, it prepends "https://"
         if (!/^(https?:\/\/)/i.test(url)) {
             url = 'https://' + url;
         }    
+
+        console.log ('URL:', url);
+        event.target.title = url;
 
         if (isValidURL(url)) {
             const faviconUrl = getFavicon(url);
@@ -71,10 +75,10 @@ window.onload = function () {
             reader.onload = function (e) {
                 const logo = new Image();
                 logo.onload = function () {
-                    const URL = document.getElementById("URL").value;
+                    // const URL = document.getElementById("URL").value;
                     const qr = new QRious({
                         element: document.getElementById('qr-canvas'),
-                        value: URL,
+                        value: url,
                         size: 800,
                         padding: 30,
                     });
