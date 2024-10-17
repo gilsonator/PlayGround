@@ -20,7 +20,6 @@ window.onload = function () {
     }
 
     console.log('URL:', url);
-    event.target.title = url;
 
     if (isValidURL(url)) {
       const faviconUrl = getFavicon(url);
@@ -101,6 +100,7 @@ window.onload = function () {
         logo.src = e.target.result;
       };
       reader.readAsDataURL(iconFile);
+      canvas.title = url;
     }
   }
 };
