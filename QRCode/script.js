@@ -1,9 +1,19 @@
 window.onload = function () {
     const logo = document.getElementById('logo-upload');
     const canvas = document.getElementById('qr-canvas');
+    const btnDownload = document.getElementById('download-btn');
+    const faviconImage = document.getElementById('favicon');
+    const paddingInput = document.getElementById("icon-padding");
+
+    const favIconDefault = "icons/website-icon.ico";
+
     let iconFile;
     let url;
 
+    faviconImage.addEventListener('error', function () {
+        faviconImage.src = favIconDefault; // Fallback icon
+    });
+    
     document.getElementById('URL').addEventListener('change', function (event) {
         url = event.target.value;
 
@@ -11,17 +21,12 @@ window.onload = function () {
         if (!/^(https?:\/\/)/i.test(url)) {
             url = 'https://' + url;
         }    
-
+        
         console.log ('URL:', url);
         event.target.title = url;
-
+        
         if (isValidURL(url)) {
             const faviconUrl = getFavicon(url);
-            const faviconImage = document.getElementById('favicon');
-
-            faviconImage.onerror = function() {
-                this.src = "icons/website-icon.ico"; // Fallback icon
-            };    
 
             faviconImage.src = faviconUrl;
             logo.disabled = false;
@@ -29,7 +34,7 @@ window.onload = function () {
 
         } else {
             logo.disabled = true;
-            document.getElementById('favicon').src = "icons/website-icon.ico";
+            faviconImage.src = favIconDefault;
         }
     });
 
@@ -38,7 +43,7 @@ window.onload = function () {
         drawQR();
     });
 
-    document.getElementById('download-btn').addEventListener('click', function () {
+    btnDownload.addEventListener('click', function () {
         const link = document.createElement('a');
         link.download = 'QRCode.png';
         link.href = canvas.toDataURL('image/png');
@@ -63,9 +68,6 @@ window.onload = function () {
         const link = document.createElement('a');
         link.href = url;
 
-        //if (link.hostname === 'localhost' || link.hostname.startsWith('192.168') || link.hostname.startsWith('127.0.0.1')) {
-        //    return `https://${link.hostname}/favicon.ico`;
-        //}
         return `https://icons.duckduckgo.com/ip3/${link.hostname}.ico`;    
     };
 
@@ -75,9 +77,9 @@ window.onload = function () {
             reader.onload = function (e) {
                 const logo = new Image();
                 logo.onload = function () {
-                    // const URL = document.getElementById("URL").value;
+
                     const qr = new QRious({
-                        element: document.getElementById('qr-canvas'),
+                        element: canvas,
                         value: url,
                         size: 800,
                         padding: 30,
@@ -88,14 +90,14 @@ window.onload = function () {
                     const logoSize = canvas.width / 5;
                     const logoX = (canvas.width - logoSize) / 2;
                     const logoY = (canvas.height - logoSize) / 2;
-                    const padding = document.getElementById("icon-padding").value;
+                    const padding = paddingInput.value;
 
                     // Draw white rectangle with padding behind the logo
                     ctx.fillStyle = 'white';
                     ctx.fillRect(logoX - padding, logoY - padding, logoSize + padding * 2, logoSize + padding * 2);
                     ctx.drawImage(logo, logoX, logoY, logoSize, logoSize);
 
-                    document.getElementById('download-btn').disabled = false;
+                    btnDownload.disabled = false;
 
                 };
                 logo.src = e.target.result;
