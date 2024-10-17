@@ -100,7 +100,7 @@ window.onload = function () {
         logo.src = e.target.result;
       };
       reader.readAsDataURL(iconFile);
-      canvas.title = url;
+      canvas.title = `QR Code, if scanned will open this link: ${url}`;
     }
   }
 };

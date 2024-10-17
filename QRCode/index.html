@@ -1,106 +1,113 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <link rel="icon" type="png" href="/icons/android-chrome-192x192.png" />
-  <link rel="icon" type="png" href="/icons/android-chrome-512x512.png" />
-  <link rel="apple-touch-icon" type="png" href="/icons/apple-touch-icon.png" />
-  <link rel="icon" type="png" href="/icons/favicon-16x16.png" />
-  <link rel="icon" type="png" href="/icons/favicon-32x32.png" />
-
-  <title>QR Code with Logo</title>
-  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
-  <style>
-    body {
-      font-family: 'Roboto', Arial, sans-serif;
-    }
-
-    b {
-      font-weight: 500;
-    }
-
-    input,
-    button {
-      padding: 4px;
-    }
-
-    #qr-canvas {
-      width: 400px;
-    }
-
-    #URL {
-      width: 200px;
-    }
-
-    .footer {
-      display: flex;
-      color: #9d9d9d;
-      width: 100%;
-    }
-
-    .canvas-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      /*height: 100vh;*/
-    }
-
-    #favicon {
-      width: 22px;
-      height: 22px;
-      margin-left: 6px;
-    }
-
-    #URLRow {
-      display: flex;
-      align-items: center;
-      margin-bottom: 4px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/android-chrome-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icons/android-chrome-512x512.png" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+    <title>QR Code with Logo</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+    <style>
+        body {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          font-family: Arial, sans-serif;
+        }
+        h1 {
+          margin: 0;
+        }
+        input {
+          padding: 4px;
+          margin: 2px 0;
+        }
+        button, .file-input-label {
+          display: inline-block;
+          padding: 4px 12px;
+          color: #333;
+          /*cursor: pointer;*/
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: #f0f0f0;
+          font-size: 16px;
+        }
+        .hidden-file-input {
+          display: none;
+        }
+        button:disabled, 
+        /* CSS Sibling Combinator + works only when the label directly follows the input element in the HTML structure. */
+        .hidden-file-input:disabled + .file-input-label {
+          background-color: #e0e0e0;
+          color: #888;
+          cursor: not-allowed;
+          border: 1px solid #aaa;
+        }
+        #download-btn {
+          margin-left: 0;
+        }
+        #qr-canvas {
+          width: 400px;
+        }
+        #favicon {
+          width: 22px;
+          height: 22px;
+          margin-left: 6px;
+        }
+        #URLRow {
+          display: flex;
+          align-items: center;
+        }
+        .links {
+          display: flex;
+          gap: 10px;
+        }
+        .footer {
+          display: flex;
+          color: #9d9d9d;
+          width: 100%;
+          margin-top: 16px;
+        }
+        #buttons {
+          margin-top: 4px;
+        }
+    </style>
 </head>
-
 <body>
-  <h1>QR Code Generator with Company Logo</h1>
-  <div class="links">
-    <img src="icons/github.svg" alt="" />
-    <a target="_blank" rel="noopener"
-      href="https://github.com/gilsonator/PlayGround/tree/main/QRCode">github/gilsonator/PlayGround/QRCode</a>
-  </div>
-  <p>
-    Specify URL and upload brand logo.<br />
-    <small>NOTE: The logo image should be square, upload an image file of the following extensions:
-      .jpg, .jpeg, .png, .gif, .bmp, .webp or .svg, it will be drawn with a white background and
-      with padding, adjust padding if code will not scan.</small>
-  </p>
-  <div>
-    <div id="URLRow">
-      URL: 
-      <input title="URL" type="text" id="URL" placeholder="Enter a valid URL to upload logo" tabindex="0" autofocus />
-      <img id="favicon" alt="Website Favicon" src="icons/website-icon.ico">
-    </div>
+    <h1>QR Code Generator with image</h1>
+    <p>
+        Specify URL and upload image.<br />
+        <small>
+            NOTE: The image should be square, and can be a .jpg, .jpeg, .png, .gif, .bmp, .webp, or .svg. It will be drawn with a white background and padding. Adjust padding if the QR code will not scan.
+        </small>
+    </p>
     <div>
-      Padding: 
-      <input title="Icon padding" type="number" id="icon-padding" placeholder="Icon Padding" value="4" min="0" max="20"
-        tabindex="0" />
-    </div>
-    <div>
-      Logo: 
-      <input title="Brand Logo" type="file" id="logo-upload" accept="image/*" disabled tabindex="0" />
-    </div>
+        <div id="URLRow">
+            <label for="URL">URL:</label>
+            <input title="Enter URL to create QRCode" type="text" id="URL" placeholder="Enter a valid URL to upload logo" tabindex="0" autofocus />
+            <img id="favicon" alt="Website Favicon" src="icons/website-icon.ico">
+        </div>
+        <div>
+          <label for="icon-padding">Padding:</label>
+          <input title="Padding around image" type="number" id="icon-padding" placeholder="Icon Padding" value="4" min="0" max="20" tabindex="-1" />
+        </div>
+        <div id="buttons">
+            <input type="file" id="logo-upload" class="hidden-file-input" accept="image/*" disabled tabindex="0" />
+            <label class="file-input-label" for="logo-upload">Choose Image</label>
+            <button title="Directly download QRCode.png image file." id="download-btn" disabled tabindex="0">Download QR Code</button>
+        </div>
+    </div>  
+    <canvas id="qr-canvas" title="" height="800" width="800"></canvas>
+    <div class="links">
+      <img src="icons/github.svg" alt="GitHub Icon" />
+      <a target="_blank" rel="noopener" href="https://github.com/gilsonator/PlayGround/tree/main/QRCode">
+          github/gilsonator/PlayGround/QRCode
+      </a>
   </div>
-  <div>
-    <button title="Download" id="download-btn" disabled tabindex="0">Download QR Code</button>
-  </div>
-  <div class="canvas-container">
-    <canvas id="qr-canvas" title="QR Code"></canvas>
-  </div>
-  </div>
-  <br />
-  <div class="footer">&copy; 2024 David Gilson. All rights reserved.</div>
-  <script src="script.js"></script>
+    <div class="footer">&copy; 2024 David Gilson. All rights reserved.</div>
+    <script src="script.js"></script>
 </body>
-
 </html>
