@@ -4,7 +4,8 @@ window.onload = function () {
   const btnDownload = document.getElementById('download-btn');
   const faviconImage = document.getElementById('favicon');
   const paddingInput = document.getElementById('icon-padding');
-  const favIconDefault = 'icons/website-icon.ico';
+  // 1px x 1px transparent PNG image
+  const favIconDefault = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUGFdjYAACAAAFAAGq1chRAAAAAElFTkSuQmCC"';
   let iconFile;
   let url;
 
@@ -14,7 +15,7 @@ window.onload = function () {
 
   document.getElementById('URL').addEventListener('change', function (event) {
     url = event.target.value;
-    // Regex to check if the URL starts with "http://" or "https://". If not, it prepends "https://"
+    // Checks if the URL has a specified protocol. If not, prepends "https://"
     if (!/^(https?:\/\/)/i.test(url)) {
       url = 'https://' + url;
     }
@@ -100,7 +101,7 @@ window.onload = function () {
         logo.src = e.target.result;
       };
       reader.readAsDataURL(iconFile);
-      canvas.title = `QR Code, if scanned will open this link: ${url}`;
+      canvas.title = `QR Code, scan to open: ${url}`;
     }
   }
 };
