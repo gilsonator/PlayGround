@@ -24,17 +24,29 @@
         input {
           padding: 4px;
           margin: 2px 0;
+          
         }
         button, .file-input-label {
           display: inline-block;
           padding: 4px 12px;
           color: #333;
-          /*cursor: pointer;*/
+          cursor: pointer;
           border: 1px solid #ccc;
           border-radius: 4px;
           background-color: #f0f0f0;
           font-size: 16px;
+          /* border-radius: 20px; */
         }
+
+        button:hover, .file-input-label:hover, button:focus, .file-input-label:focus {
+          background-color: #e0e0e0;
+        }
+
+        button:active, .file-input-label:active, button:focus, .file-input-label:focus {
+            border: 1px solid #888;
+            background-color: #d0d0d0;
+        }
+
         .hidden-file-input {
           display: none;
         }
