@@ -22,9 +22,13 @@
           margin: 0;
         }
         input {
-          padding: 4px;
+          padding: 0 4px;
           margin: 2px 0;
-          
+          height: 2rem;
+          padding: 0px 0.9rem;
+        }
+        #URL {
+          padding: 0px 1.8rem;
         }
         button, .file-input-label {
           display: inline-block;
@@ -65,13 +69,24 @@
           width: 400px;
         }
         #favicon {
-          width: 22px;
-          height: 22px;
-          margin-left: 6px;
+          width: 18px;
+          height: 18px;
+          margin: 0px 6px 0 6px;
+          position: absolute;
         }
-        #URLRow {
+        .form-row {
+          display: flex;
+          align-items: flex-start;
+          flex-direction: column;
+          width: 100%;
+        }
+        .form-row div {
           display: flex;
           align-items: center;
+          width: 100%;
+        }
+        .form-row input {
+          width: -webkit-fill-available;
         }
         .links {
           display: flex;
@@ -97,16 +112,18 @@
         </small>
     </p>
     <div>
-        <div id="URLRow">
+        <div class="form-row" id="URLRow">
             <label for="URL">URL:</label>
-            <input title="Enter URL to create QRCode" type="text" id="URL" placeholder="Enter a valid URL" tabindex="0" autofocus />
-            <img id="favicon" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUGFdjYAACAAAFAAGq1chRAAAAAElFTkSuQmCC">
+            <div >
+              <img id="favicon" alt="" src="icons/page.svg">
+              <input title="Enter URL to create QRCode" type="text" id="URL" placeholder="Enter a valid URL" tabindex="0" autofocus autocomplete="off" />
+            </div>
         </div>
-        <div>
+        <div class="form-row">
           <label for="icon-padding">Padding:</label>
           <input title="Padding around image" type="number" id="icon-padding" placeholder="Icon Padding" value="4" min="0" max="20" tabindex="-1" />
         </div>
-        <div id="buttons">
+        <div  id="buttons">
             <input type="file" id="logo-upload" class="hidden-file-input" accept="image/*" disabled tabindex="0" />
             <label class="file-input-label" for="logo-upload" tabindex="0">Choose Image</label>
             <button title="Directly download QRCode.png image file." id="download-btn" disabled tabindex="0">Download QR Code</button>

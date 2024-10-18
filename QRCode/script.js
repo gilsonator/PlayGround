@@ -5,7 +5,8 @@ window.onload = function () {
   const faviconImage = document.getElementById('favicon');
   const paddingInput = document.getElementById('icon-padding');
   // 1px x 1px transparent PNG image
-  const favIconDefault = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUGFdjYAACAAAFAAGq1chRAAAAAElFTkSuQmCC"';
+  // const favIconDefault = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUGFdjYAACAAAFAAGq1chRAAAAAElFTkSuQmCC"';
+  const favIconDefault = "icons/page.svg"
   let iconFile;
   let url;
 
