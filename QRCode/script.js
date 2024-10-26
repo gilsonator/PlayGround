@@ -15,22 +15,28 @@ window.onload = function () {
   });
 
   document.getElementById('URL').addEventListener('change', function (event) {
-    url = event.target.value;
+    let url = event.target.value;
     // Checks if the URL has a specified protocol. If not, prepends "https://"
     if (!/^(https?:\/\/)/i.test(url)) {
-      url = 'https://' + url;
+        url = 'https://' + url;
     }
 
     console.log('URL:', url);
 
     if (isValidURL(url)) {
-      const faviconUrl = getFavicon(url);
-      faviconImage.src = faviconUrl;
-      logo.disabled = false;
-      drawQR();
+        try {
+            const faviconUrl = getFaviconURL(url);  // No async/await needed here
+            faviconImage.src = faviconUrl;
+            logo.disabled = false;
+
+            drawQR();
+        } catch (error) {
+            console.error("Error setting favicon:", error);
+            faviconImage.src = favIconDefault;  // Use default icon if an error occurs
+        }
     } else {
-      logo.disabled = true;
-      faviconImage.src = favIconDefault;
+        logo.disabled = true;
+        faviconImage.src = favIconDefault;
     }
   });
 
@@ -53,17 +59,17 @@ window.onload = function () {
   function isValidURL(string) {
     const pattern = new RegExp(
       '^(https?:\\/\\/)?' + // protocol
-        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' + // domain name
-        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-        '(\\#[-a-z\\d_]*)?$',
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' + // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+      '(\\#[-a-z\\d_]*)?$',
       'i'
     ); // fragment locator
     return !!pattern.test(string);
   }
 
-  function getFavicon(url) {
+  function getFaviconURL(url) {
     const link = document.createElement('a');
     link.href = url;
     return `https://icons.duckduckgo.com/ip3/${link.hostname}.ico`;
