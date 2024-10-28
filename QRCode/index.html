@@ -109,6 +109,14 @@
         #buttons {
           margin-top: 4px;
         }
+
+        #canvas-content {
+          display: flex;
+          flex-direction: column;
+          align-content: center;
+          flex-wrap: wrap;
+          width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -136,8 +144,10 @@
             <label class="file-input-label" for="logo-upload" tabindex="0">Choose Image</label>
             <button title="Directly download QRCode.png image file." id="download-btn" disabled tabindex="0">Download QR Code</button>
         </div>
-    </div>  
-    <canvas id="qr-canvas" title="" height="800" width="800"></canvas>
+    </div>
+    <div id="canvas-content">
+      <canvas id="qr-canvas" title="" height="800" width="800"></canvas>
+    </div>
     <div class="links">
       <img src="icons/github.svg" alt="GitHub Icon" />
       <a target="_blank" rel="noopener" href="https://github.com/gilsonator/PlayGround/tree/main/QRCode">
