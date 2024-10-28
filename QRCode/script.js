@@ -106,6 +106,7 @@ window.onload = function () {
 
   function drawImage(src) {
     const logo = new Image();
+    logo.crossOrigin = "Anonymous";
     logo.onload = function () {
       const ctx = canvas.getContext('2d');
       const logoSize = canvas.width / 5;
