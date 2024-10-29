@@ -117,6 +117,18 @@
           flex-wrap: wrap;
           width: 100%;
         }
+
+        .drop-area {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .drop-area.dragover {
+            border-color: #000;
+            background-color: #f0f0f0;
+        }
+
     </style>
 </head>
 <body>
@@ -144,6 +156,7 @@
             <label class="file-input-label" for="logo-upload" tabindex="0">Choose Image</label>
             <button title="Directly download QRCode.png image file." id="download-btn" disabled tabindex="0">Download QR Code</button>
         </div>
+        <div id="drop-area" class="drop-area">Drag and drop an image file here</div>
     </div>
     <div id="canvas-content">
       <canvas id="qr-canvas" title="" height="800" width="800"></canvas>

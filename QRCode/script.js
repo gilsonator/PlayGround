@@ -4,6 +4,7 @@ window.onload = function () {
   const btnDownload = document.getElementById('download-btn');
   const faviconImage = document.getElementById('favicon');
   const paddingInput = document.getElementById('icon-padding');
+  const dropArea = document.getElementById('drop-area');
   // 1px x 1px transparent PNG image
   // const favIconDefault = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUGFdjYAACAAAFAAGq1chRAAAAAElFTkSuQmCC"';
   const favIconDefault = 'icons/page.svg';
@@ -47,6 +48,24 @@ window.onload = function () {
   logo.addEventListener('change', function (event) {
     iconFile = event.target.files[0];
     drawIcon();
+  });
+
+  dropArea.addEventListener('dragover', function (event) {
+      event.preventDefault();
+      dropArea.classList.add('dragover');
+  });
+
+  dropArea.addEventListener('dragleave', function () {
+      dropArea.classList.remove('dragover');
+  });
+
+  dropArea.addEventListener('drop', function (event) {
+      event.preventDefault();
+      dropArea.classList.remove('dragover');
+      if (event.dataTransfer.files.length > 0) {
+          iconFile = event.dataTransfer.files[0];
+          drawIcon();
+      }
   });
 
   btnDownload.addEventListener('click', function btnDownloadClick () {
