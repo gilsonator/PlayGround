@@ -1,5 +1,5 @@
 window.onload = function () {
-  const logo = document.getElementById('logo-upload');
+  const logoBtn = document.getElementById('logo-upload');
   const canvas = document.getElementById('qr-canvas');
   const btnDownload = document.getElementById('download-btn');
   const faviconImage = document.getElementById('favicon');
@@ -32,20 +32,22 @@ window.onload = function () {
       try {
         const faviconUrl = getFaviconURL(url); // No async/await needed here
         faviconImage.src = faviconUrl;
-        logo.disabled = false;
-
+        logoBtn.disabled = false;
+        dropArea.style.display = 'block';
         drawQR();
       } catch (error) {
         console.error('Error setting favicon:', error);
         faviconImage.src = favIconDefault; // Use default icon if an error occurs
+        logoBtn.disabled = true;
+        dropArea.style.display = 'none'
       }
     } else {
-      logo.disabled = true;
+      logoBtn.disabled = true;
       faviconImage.src = favIconDefault;
     }
   });
 
-  logo.addEventListener('change', function (event) {
+  logoBtn.addEventListener('change', function (event) {
     iconFile = event.target.files[0];
     drawIcon();
   });
@@ -70,7 +72,7 @@ window.onload = function () {
 
   btnDownload.addEventListener('click', function btnDownloadClick () {
     const link = document.createElement('a');
-    link.download = 'QRCode.png';
+    link.download = /*document.getElementById('URL').value +*/ 'QRCode.png';
     link.href = canvas.toDataURL('image/png');
     link.click();
   });
@@ -124,9 +126,9 @@ window.onload = function () {
   }
 
   function drawImage(src) {
-    const logo = new Image();
-    logo.crossOrigin = "Anonymous";
-    logo.onload = function () {
+    const logoImg = new Image();
+    logoImg.crossOrigin = "Anonymous";
+    logoImg.onload = function () {
       const ctx = canvas.getContext('2d');
       const logoSize = canvas.width / 5;
       const logoX = (canvas.width - logoSize) / 2;
@@ -141,9 +143,9 @@ window.onload = function () {
         logoSize + padding * 2,
         logoSize + padding * 2
       );
-      ctx.drawImage(logo, logoX, logoY, logoSize, logoSize);
+      ctx.drawImage(logoImg, logoX, logoY, logoSize, logoSize);
       canvas.title = `QR Code, scan to open: ${url}`;
     };
-    logo.src = src;
+    logoImg.src = src;
   }
 };

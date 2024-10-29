@@ -117,12 +117,16 @@
           flex-wrap: wrap;
           width: 100%;
         }
-
         .drop-area {
             border: 2px dashed #ccc;
             padding: 20px;
             text-align: center;
             margin-top: 20px;
+            display: none;
+        }
+        .drop-area.active {
+          border-color: #666;
+          background-color: #f0f0f0
         }
         .drop-area.dragover {
             border-color: #000;
