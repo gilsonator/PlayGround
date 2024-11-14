@@ -10,6 +10,7 @@ window.onload = function () {
   const favIconDefault = 'icons/page.svg';
   let iconFile;
   let url;
+  let padding = 4;
 
   faviconImage.addEventListener('error', function () {
     faviconImage.src = favIconDefault; // Fallback icon
@@ -78,6 +79,12 @@ window.onload = function () {
   });
 
   paddingInput.addEventListener('change', function () {
+    const paddingVal = parseInt(paddingInput.value) || 4; // Ensure padding is a number
+    
+    if (paddingVal < padding) {
+      drawQR();
+    }
+    padding = paddingVal;
     drawIcon();
   });
 
@@ -108,7 +115,7 @@ window.onload = function () {
       padding: 30,
     });
 
-    drawIcon();
+    //drawIcon();
     btnDownload.disabled = false;
   }
 
@@ -133,7 +140,6 @@ window.onload = function () {
       const logoSize = canvas.width / 5;
       const logoX = (canvas.width - logoSize) / 2;
       const logoY = (canvas.height - logoSize) / 2;
-      const padding = parseInt(paddingInput.value) || 4; // Ensure padding is a number
 
       // Draw white rectangle with padding behind the logo
       ctx.fillStyle = 'white';
