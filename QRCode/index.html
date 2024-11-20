@@ -2,71 +2,76 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1W0D76D4QM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1W0D76D4QM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-1W0D76D4QM');
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/icons/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-    <title>QR Code with Logo</title>
-    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    gtag('config', 'G-1W0D76D4QM');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+  <title>QR Code with Logo</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js" async></script>
+  <script src="script.js" defer></script>
 </head>
+
 <body>
-    <h1>QR Code Generator with image</h1>
-    <p>
-      Specify the URL and select an image to generate a QR code that will open the defined URL.<br />
-        <small>
-            <b>NOTE:</b> The image should be square and can be a .svg (recommended), .jpg, .jpeg, .png, .gif, .bmp and .webp. It will be drawn with a white background and padding. Adjust the padding if the QR code does not scan.
-        </small>
-    </p>
-    <div>
-        <div class="form-row" id="URLRow">
-            <label for="URL">URL:</label>
-            <div >
-              <img id="favicon" alt="" src="icons/page.svg">
-              <input title="Enter URL to create QRCode" type="text" id="URL" placeholder="Enter a valid URL" tabindex="0" autofocus autocomplete="off" autocapitalize="off" autocorrect="false" />
-            </div>
-        </div>
-        <div class="form-row">
-          <label for="icon-padding">Padding:</label>
-          <input title="Padding around image" type="number" id="icon-padding" placeholder="Icon Padding" value="4" min="0" max="20" tabindex="-1" />
-        </div>
-        <div  id="buttons">
-            <input type="file" id="logo-upload" class="hidden-file-input" accept="image/*" disabled tabindex="0" />
-            <label class="file-input-label" for="logo-upload" tabindex="0">Choose Image</label>
-            <button title="Directly download QRCode.png image file." id="download-btn" disabled tabindex="0">Download QR Code</button>
-        </div>
-        <div id="drop-area" class="drop-area">Drag and drop an image file here</div>
+  <h1>QR Code Generator with image</h1>
+  <p>
+    Specify the URL and select an image to generate a QR code that will open the defined URL.<br />
+    <small>
+      <b>NOTE:</b> The image should be square and can be a .svg (recommended), .jpg, .jpeg, .png, .gif, .bmp and .webp.
+      It will be drawn with a white background and padding. Adjust the padding if the QR code does not scan.
+    </small>
+  </p>
+  <div>
+    <div class="form-row" id="URLRow">
+      <label for="URL">URL:</label>
+      <div>
+        <img id="favicon" alt="" src="icons/page.svg">
+        <input title="Enter URL to create QRCode" type="text" id="URL" placeholder="Enter a valid URL" tabindex="0"
+          autofocus autocomplete="off" autocapitalize="off" autocorrect="false" />
+      </div>
     </div>
-    <div id="canvas-content">
-      <canvas id="qr-canvas" title="" height="800" width="800"></canvas>
+    <div class="form-row">
+      <label for="icon-padding">Padding:</label>
+      <input title="Padding around image" type="number" id="icon-padding" placeholder="Icon Padding" value="4" min="0"
+        max="20" tabindex="-1" />
     </div>
-    <div class="links">
-      <img src="icons/github.svg" alt="GitHub Icon" />
-      <a target="_blank" rel="noopener" href="https://github.com/gilsonator/PlayGround/tree/main/QRCode">
-          github/gilsonator/PlayGround/QRCode
-      </a>
+    <div id="buttons">
+      <input type="file" id="logo-upload" class="hidden-file-input" accept="image/*" disabled tabindex="0" />
+      <label class="file-input-label" for="logo-upload" tabindex="0">Choose Image</label>
+      <button title="Directly download QRCode.png image file." id="download-btn" disabled tabindex="0">Download QR
+        Code</button>
+    </div>
+    <div id="drop-area" class="drop-area">Drag and drop an image file here</div>
   </div>
-    <div class="footer">&copy; 2024 David Gilson. All rights reserved.</div>
-    <script src="script.js"></script>
+  <div id="canvas-content">
+    <canvas id="qr-canvas" title="" height="800" width="800"></canvas>
+  </div>
+  <div class="links">
+    <img src="icons/github.svg" alt="GitHub Icon" />
+    <a target="_blank" rel="noopener" href="https://github.com/gilsonator/PlayGround/tree/main/QRCode">
+      github/gilsonator/PlayGround/QRCode
+    </a>
+  </div>
+  <div class="footer">&copy; 2024 David Gilson. All rights reserved.</div>
 </body>
 </html>
