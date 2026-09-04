@@ -4,12 +4,14 @@ function load() {
   let isDuplicating = false;
   let clone = null;
   let longPressTimer = null;
+  let touchColumn = null;
 
   draggables.forEach(draggable => {
     draggable.addEventListener('dragstart', handleDragStart, false);
     draggable.addEventListener('dragend', handleDragEnd, false);
     draggable.addEventListener('touchstart', handleTouchStart, false);
     draggable.addEventListener('touchend', handleTouchEnd, false);
+    draggable.addEventListener('touchcancel', handleTouchEnd, false);
     draggable.addEventListener('touchmove', handleTouchMove, false);
   });
 
@@ -63,6 +65,7 @@ function load() {
     const touch = event.touches[0];
     const draggable = event.target;
     draggable.classList.add('dragging');
+    touchColumn = draggable.closest('.column');
     longPressTimer = setTimeout(() => {
       isDuplicating = true;
       clone = draggable.cloneNode(true);
@@ -77,8 +80,17 @@ function load() {
     const touch = event.touches[0];
     const dragging = document.querySelector('.dragging');
     if (dragging) {
-      dragging.style.left = `${touch.pageX}px`;
-      dragging.style.top = `${touch.pageY}px`;
+      const elementUnderTouch = document.elementFromPoint(touch.clientX, touch.clientY);
+      const targetColumn = elementUnderTouch && elementUnderTouch.closest('.column');
+      if (targetColumn) {
+        touchColumn = targetColumn;
+        const afterElement = getDragAfterElement(targetColumn, touch.clientY);
+        if (afterElement == null) {
+          targetColumn.appendChild(dragging);
+        } else if (afterElement !== dragging) {
+          targetColumn.insertBefore(dragging, afterElement);
+        }
+      }
     }
   }
 
@@ -86,8 +98,14 @@ function load() {
     clearTimeout(longPressTimer);
     const dragging = document.querySelector('.dragging');
     if (dragging) {
+      if (isDuplicating && clone && touchColumn) {
+        touchColumn.insertBefore(clone, dragging.nextSibling);
+        clone = null;
+      }
       dragging.classList.remove('dragging');
     }
+    isDuplicating = false;
+    touchColumn = null;
   }
 
   function getDragAfterElement(container, y) {
@@ -112,6 +130,7 @@ function load() {
     clone.addEventListener('dragend', handleDragEnd, false);
     clone.addEventListener('touchstart', handleTouchStart, false);
     clone.addEventListener('touchend', handleTouchEnd, false);
+    clone.addEventListener('touchcancel', handleTouchEnd, false);
     clone.addEventListener('touchmove', handleTouchMove, false);
   }
 }
