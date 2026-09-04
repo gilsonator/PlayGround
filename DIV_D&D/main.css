@@ -17,15 +17,35 @@ body {
   padding: 10px;
   background-color: #f0f0f0;
   border: 1px solid #ccc;
-  cursor: default;
+  cursor: grab;
   margin-bottom: 10px;
   touch-action: none;
 }
 .dragging {
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
   opacity: 0.5;
   background-color: #ffe08a;
   transform: scale(1.03);
   box-shadow: 0 4px 12px #0003;
+}
+.mouse-dragging {
+  cursor: grabbing;
+}
+.touch-dragging {
+  cursor: pointer;
+}
+.cannot-drop {
+  cursor: not-allowed;
+}
+body.pointer-dragging,
+body.pointer-dragging * {
+  cursor: grabbing !important;
+}
+body.pointer-cannot-drop,
+body.pointer-cannot-drop * {
+  cursor: not-allowed !important;
 }
 .ctrl-cursor {
     cursor: copy; /* This will show a plus sign cursor */
